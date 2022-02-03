@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elasticsearch-2.0.0-d2iq-defaults
+  namespace: ${releaseNamespace}
+data:
+  values.yaml: |-
+    client:
+      heapSize: 1024m
+      resources:
+        limits:
+          cpu: 500m
+          memory: 2048Mi
+        requests:
+          cpu: 100m
+          memory: 1536Mi
+    data:
+      heapSize: 3072m
+      hooks:
+        drain:
+          enabled: false
+        postStart: |-
+          #!/bin/bash
+          set -o errexit
+          set -o nounset
+          set -o pipefail
+          CLIENT_URL=http://{{ template "elasticsearch.client.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local.:9200
+          # Wait until client nodes accept requests.
+          # This prevents data pods from getting into a long CrashLoopBackoff.
+          echo "Waiting for client node service ..."
+          while [[ "$(curl -s -o /dev/null -w '%{http_code}' -L ${CLIENT_URL}/_cluster/health)" != "200" ]]; do sleep 1; done
+      persistence:
+        storageClass: elasticdata
+      replicas: 3
+      resources:
+        limits:
+          cpu: 2000m
+          memory: 8192Mi
+        requests:
+          cpu: 1000m
+          memory: 4608Mi
+      updateStrategy:
+        type: RollingUpdate
+    master:
+      heapSize: 1024m
+      persistence:
+        storageClass: elasticmaster
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 2048Mi
+        requests:
+          cpu: 500m
+          memory: 1536Mi
+      updateStrategy:
+        type: RollingUpdate

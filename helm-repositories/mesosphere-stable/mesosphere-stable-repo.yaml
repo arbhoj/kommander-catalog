@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: mesosphere.github.io-charts-stable
+  namespace: ${releaseNamespace}
+spec:
+  interval: 10m
+  url: "${helmMirrorURL:=https://mesosphere.github.io/charts/stable}"
