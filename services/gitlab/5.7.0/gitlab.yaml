@@ -7,7 +7,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: 
+      chart: gitlab
       sourceRef:
         kind: HelmRepository
         name: charts.gitlab.io
