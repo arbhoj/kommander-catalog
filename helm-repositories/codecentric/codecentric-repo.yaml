@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: codecentric.github.io
-  namespace: ${workspaceNamespace}
+  namespace: ${releaseNamespace}
 spec:
   interval: 10m
   timeout: 1m
