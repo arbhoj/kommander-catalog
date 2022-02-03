@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitlab-5.7.0-defaults
+  namespace: ${releaseNamespace}
+data:
+  values.yaml: |-
+    certmanager:
+      install: false
