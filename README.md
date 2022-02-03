@@ -1,4 +1,4 @@
-## This is a demo custom repo for DKP 2.1.1 +
+## This is a demo custom catalog repo for DKP 2.1.1 +
 
 To add this to a project simply create a gitrepository resource as shown below to the given project
 
