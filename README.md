@@ -23,3 +23,8 @@ spec:
 EOF
 
 ``` 
+
+Here is a screenshot of the custom catalogs in the DKP Dashboard
+
+![Kommander Portal With Custom Catalog Item](./Custom_Catalog_2.1.1.png)
+
