@@ -2,6 +2,8 @@
 
 To add this to a project simply create a gitrepository resource as shown below to the given project
 
+>If building your own catalog items, make sure that the image is in svg format.
+
 ```
 export PROJECT=customcatalogdemo
 
