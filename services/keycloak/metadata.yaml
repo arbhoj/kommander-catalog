@@ -5,6 +5,7 @@ category:
 type: catalog
 scope:
   - project
+  - workspace
 overview: |-
   # Overview
   Keycloak is an open source identity and access management for modern applications and services.
