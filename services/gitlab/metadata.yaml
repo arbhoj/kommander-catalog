@@ -5,6 +5,7 @@ category:
 type: catalog
 scope:
   - project
+  - workspace
 overview: |-
   # Overview
     GitLab is a complete DevOps platform that brings development, operations, and security teams into a single application. GitLab helps teams accelerate software delivery from weeks to minutes while reducing development costs and security risks.
