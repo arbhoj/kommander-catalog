@@ -3,6 +3,7 @@
 To add this to a project simply create a gitrepository resource as shown below to the given project
 
 >If building your own catalog items, make sure that the image is in svg format.
+>A catalog item can be designed for only projects, only workspaces or for both. This is controlled by the `scope` field in the metadata file of the service. The examples in this repo have services that can be exposed at both levels. Simply change the PROJECT variable to point to a workspace namespace to deploy to a namespace. However, note that any application that can only have one instance per cluster should only be exposed at workspace level 
 
 ```
 export PROJECT=customcatalogdemo
