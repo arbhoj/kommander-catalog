@@ -40,4 +40,4 @@ spec:
     plugin-rewritebody:
       rewrites:
       - regex: /
-        replacement: /weavegitops
+        replacement: /weavegitops/
