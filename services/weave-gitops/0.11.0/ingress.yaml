@@ -18,7 +18,7 @@ spec:
             port:
               number: 9001
         path: /weavegitops
-        pathType: Prefix
+        pathType: ImplementationSpecific
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
