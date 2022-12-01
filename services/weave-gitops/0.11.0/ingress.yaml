@@ -6,7 +6,7 @@ metadata:
   namespace: ${releaseNamespace}
   annotations:
     kubernetes.io/ingress.class: kommander-traefik
-    traefik.ingress.kubernetes.io/router.middlewares: "kommander-flux-stripprefixesweave@kubernetescrd,kommander-flux-rewrite-weave@kubernetescrd"
+    #traefik.ingress.kubernetes.io/router.middlewares: "kommander-flux-stripprefixesweave@kubernetescrd,kommander-flux-rewrite-weave@kubernetescrd"
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   rules:
@@ -17,7 +17,7 @@ spec:
             name: weave-gitops
             port:
               number: 9001
-        path: /weavegitops
+        path: /sign_in
         pathType: ImplementationSpecific
 ---
 apiVersion: traefik.containo.us/v1alpha1
