@@ -8,4 +8,4 @@ spec:
   interval: 1h0m0s
   type: obi
   url: "${helmMirrorURL:=oci://ghcr.io/weaveworks/charts}"
-  timeout 2m
+  timeout: 2m
