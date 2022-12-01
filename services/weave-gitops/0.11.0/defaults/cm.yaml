@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weave-gitops-2.0.0-d2iq-defaults
+  namespace: ${releaseNamespace}
+data:
+  values.yaml: |-
+    adminUser:
+      create: true
+      passwordHash: $2a$10$kmXJ4uVzGNP7nsr9MR9QDuQaGiQUZ6SKhBs/LbTEH6IBp9PDmt/Pm
+      username: admin

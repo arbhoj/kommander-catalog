@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: keycloak
+  namespace: ${releaseNamespace}
+spec:
+  chart:
+    spec:
+      chart: keycloak
+      sourceRef:
+        kind: HelmRepository
+        name: codecentric.github.io
+        namespace: ${releaseNamespace}
+      version: 15.1.0
+  interval: 15s
+  install:
+    remediation:
+      retries: 30
+    createNamespace: false
+  upgrade:
+    remediation:
+      retries: 30
+  releaseName: keycloak
+  valuesFrom:
+    - kind: ConfigMap
+      name: keycloak-15.1.0-defaults
+  targetNamespace: ${releaseNamespace}
