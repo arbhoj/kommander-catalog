@@ -6,7 +6,7 @@ metadata:
   namespace: ${releaseNamespace}
   annotations:
     kubernetes.io/ingress.class: kommander-traefik
-    traefik.ingress.kubernetes.io/router.middlewares: "kommander-flux-stripprefixesweave@kubernetescrd"
+    traefik.ingress.kubernetes.io/router.middlewares: "kommander-flux-stripprefixesweave@kubernetescrd,kommander-flux-rewrite-weave@kubernetescrd"
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   rules:
@@ -29,3 +29,15 @@ spec:
   stripPrefix:
     prefixes:
     - /weavegitops
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: rewrite-weave
+  namespace: kommander-flux
+spec:
+  plugin:
+    plugin-rewritebody:
+      rewrites:
+      - regex: /
+        replacement: /weavegitops
