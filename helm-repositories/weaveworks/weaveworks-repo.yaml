@@ -6,6 +6,6 @@ metadata:
   namespace: ${releaseNamespace}
 spec:
   interval: 1h0m0s
-  type: obi
+  type: oci
   url: "${helmMirrorURL:=oci://ghcr.io/weaveworks/charts}"
   timeout: 2m
