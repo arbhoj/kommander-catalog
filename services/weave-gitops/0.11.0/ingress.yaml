@@ -13,8 +13,8 @@ spec:
   - http:
       paths:
       - backend:
-          service: weave-gitops-weave-gitops
-            name: 
+          service: 
+            name: weave-gitops-weave-gitops
             port:
               number: 80
         path: /weavegitops
