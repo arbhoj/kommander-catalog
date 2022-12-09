@@ -6,14 +6,14 @@ To add this to a project simply create a gitrepository resource as shown below t
 >A catalog item can be designed for only projects, only workspaces or for both. This is controlled by the `scope` field in the metadata file of the service. The examples in this repo have services that can be exposed at both levels. Simply change the PROJECT variable to point to a workspace namespace to deploy to a namespace. However, note that any application that can only have one instance per cluster should only be exposed at workspace level 
 
 ```
-export PROJECT=customcatalogdemo
+export NAMESPACE=fleet
 
 kubectl apply -f - <<EOF
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: demo-project-repo
-  namespace: ${PROJECT}
+  name: demo-repo
+  namespace: ${NAMESPACE}
   labels:
     kommander.d2iq.io/gitapps-gitrepository-type: catalog
     kommander.d2iq.io/gitrepository-type: catalog
