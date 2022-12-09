@@ -4,7 +4,6 @@ category:
   - devops
 type: catalog
 scope:
-  - project
   - workspace
 overview: |-
   # Overview
