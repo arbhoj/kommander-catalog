@@ -4,7 +4,6 @@ category:
   - logging
 type: catalog
 scope:
-  - project
   - workspace
 overview: |-
   # Overview
