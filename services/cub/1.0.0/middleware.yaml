@@ -1,6 +1,6 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
-metadata
+metadata:
   name: welcomeglobal-stripprefixes
   namespace: kommander-flux
 spec:
