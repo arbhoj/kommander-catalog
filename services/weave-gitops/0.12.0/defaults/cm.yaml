@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weave-gitops-0.11.0-d2iq-defaults
+  namespace: ${releaseNamespace}
+data:
+  values.yaml: |-
+    annotations:
+      secret.reloader.stakater.com/reload: "oidc-auth"
+    adminUser:
+      create: true
+      passwordHash: $2a$10$kmXJ4uVzGNP7nsr9MR9QDuQaGiQUZ6SKhBs/LbTEH6IBp9PDmt/Pm
+      username: admin
