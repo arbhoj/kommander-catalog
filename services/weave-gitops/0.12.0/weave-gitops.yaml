@@ -70,7 +70,8 @@ data:
   docsLink: https://github.com/weaveworks/weave-gitops
   name: Weave Gitops Dashboard
   category: Gitops
-  icon: https://fleetmanager.dkpdemo.org/dkp/kommander/dashboardapi/namespace/fleet/apps/weave-gitops-0.12.0/logo
+  description: weave-gitops is a ui tool to visualize and manage flux resources in the clusters
+  appTypeDisplayName: APP_TYPE_DISPLAY_NAMES.PLATFORM,
   version: 0.12.0
 kind: ConfigMap
 metadata:
