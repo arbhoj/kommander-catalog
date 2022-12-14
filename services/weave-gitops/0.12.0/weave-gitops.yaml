@@ -50,3 +50,17 @@ spec:
               number: 9001
         path: /
         pathType: Prefix
+
+---
+apiVersion: v1
+data:
+  dashboardLink: /:9000
+  docsLink: https://github.com/weaveworks/weave-gitops
+  name: Weave Gitops Dashboard
+  version: 0.12.0
+kind: ConfigMap
+metadata:
+  labels:
+    kommander.d2iq.io/application: weave-gitops
+  name: weave-gitops-dashboard-info
+  namespace: ${releaseNamespace}
