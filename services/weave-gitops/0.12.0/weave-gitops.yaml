@@ -37,7 +37,7 @@ metadata:
   namespace: kommander-flux
 spec:
   replacePathRegex:
-    regex: /:9000
+    regex: \/:9000
     replacement: |-
       :9000
 ---
