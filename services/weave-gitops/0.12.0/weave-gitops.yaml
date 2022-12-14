@@ -61,7 +61,7 @@ spec:
             port:
               number: 9001
         path: /
-        pathType: Prefix
+        pathType: ImplementationSpecific
 
 ---
 apiVersion: v1
