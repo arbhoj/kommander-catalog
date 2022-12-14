@@ -96,7 +96,7 @@ metadata:
     kustomize.toolkit.fluxcd.io/name: weave-gitops-1
     kustomize.toolkit.fluxcd.io/namespace: fleet
   name: weave-gitops-ingress-dashboard-redirect
-  namespace: fleet
+  namespace: ${releaseNamespace}
 spec:
   rules:
   - http:
