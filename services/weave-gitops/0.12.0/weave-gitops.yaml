@@ -69,6 +69,8 @@ data:
   dashboardLink: /:9000
   docsLink: https://github.com/weaveworks/weave-gitops
   name: Weave Gitops Dashboard
+  category: Gitops
+  icon: https://fleetmanager.dkpdemo.org/dkp/kommander/dashboardapi/namespace/fleet/apps/weave-gitops-0.12.0/logo
   version: 0.12.0
 kind: ConfigMap
 metadata:
