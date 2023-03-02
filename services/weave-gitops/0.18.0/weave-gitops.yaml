@@ -33,7 +33,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: weave-gitops-replace
+  name: weave-gitops-redirect
   namespace: kommander-flux
 spec:
   redirectRegex:
@@ -59,8 +59,8 @@ spec:
             name: weave-gitops
             port:
               number: 9001
-        path: /:9000
-        pathType: Prefix
+        path: /
+        pathType: ImplementationSpecific
 
 ---
 apiVersion: v1
