@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 1h0m0s
   type: oci
-  url: "${helmMirrorURL:=oci://ghcr.io/weaveworks/charts}"
+  url: "oci://ghcr.io/weaveworks/charts"
   timeout: 2m
