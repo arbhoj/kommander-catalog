@@ -59,7 +59,7 @@ spec:
             name: weave-gitops
             port:
               number: 9001
-        path: /
+        path: /:9000
         pathType: Prefix
 
 ---
@@ -68,7 +68,7 @@ data:
   dashboardLink: /:9000
   docsLink: https://github.com/weaveworks/weave-gitops
   name: Weave Gitops Dashboard
-  version: 0.12.0
+  version: 0.18.0
 kind: ConfigMap
 metadata:
   labels:
