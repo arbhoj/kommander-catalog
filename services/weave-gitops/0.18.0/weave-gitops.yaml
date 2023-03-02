@@ -36,10 +36,9 @@ metadata:
   name: weave-gitops-replace
   namespace: kommander-flux
 spec:
-  replacePathRegex:
-    regex: \/:9000
-    replacement: |-
-      :9000
+  redirectRegex:
+    regex: ^https://(.*)/:9000
+    replacement: "https://$${1}:9000"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
