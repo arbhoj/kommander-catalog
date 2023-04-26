@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd-crds
+  namespace: ${releaseNamespace}
+spec:
+  chart:
+    spec:
+      chart: linkerd-crds
+      sourceRef:
+        kind: HelmRepository
+        name: helm.linkerd.io
+        namespace: ${releaseNamespace}
+      version: 1.6.1
+  interval: 15s
+  install:
+    remediation:
+      retries: 30
+    createNamespace: false
+  upgrade:
+    remediation:
+      retries: 30
+  releaseName: linkerd-crds
+  targetNamespace: ${releaseNamespace}
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd
+  namespace: ${releaseNamespace}
+spec:
+  chart:
+    spec:
+      chart: linkerd-control-plane
+      sourceRef:
+        kind: HelmRepository
+        name: helm.linkerd.io
+        namespace: ${releaseNamespace}
+      version: 1.12.2
+  dependsOn:
+    - name: linkerd-crds
+  interval: 15s
+  install:
+    remediation:
+      retries: 30
+    createNamespace: false
+  upgrade:
+    remediation:
+      retries: 30
+  releaseName: linkerd
+  valuesFrom:
+    - kind: ConfigMap
+      name: linkerd-2.13.2-defaults
+  targetNamespace: ${releaseNamespace}
