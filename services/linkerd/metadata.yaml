@@ -1,7 +1,7 @@
 displayName: Linkerd
 description: This deploys an instance of Linkerd
 category:
-  - Service Mesh
+  - service-mesh
 type: catalog
 scope:
   - workspace
