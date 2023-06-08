@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: linkerd-2.13.2-defaults
+  name: linkerd-2.13.4-defaults
   namespace: ${releaseNamespace}
 data:
   values.yaml: |-
