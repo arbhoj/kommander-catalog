@@ -97,7 +97,7 @@ spec:
         namespace: ${releaseNamespace}
       version: 30.8.3
   dependsOn:
-    - name: linkerd-crds
+    - name: linkerd-control-plane
   interval: 15s
   install:
     remediation:
