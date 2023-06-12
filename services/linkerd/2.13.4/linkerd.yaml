@@ -102,9 +102,36 @@ spec:
   install:
     remediation:
       retries: 30
-    createNamespace: false
+    createNamespace: true
   upgrade:
     remediation:
       retries: 30
-  releaseName: linkerd-viz
-  targetNamespace: linkerd
+  releaseName: linkerd
+  targetNamespace: linkerd-viz
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd-smi
+  namespace: ${releaseNamespace}
+spec:
+  chart:
+    spec:
+      chart: linkerd-smi
+      sourceRef:
+        kind: HelmRepository
+        name: helm.linkerd-smi.io
+        namespace: ${releaseNamespace}
+      version: 1.0.1
+  dependsOn:
+    - name: linkerd-control-plane
+  interval: 15s
+  install:
+    remediation:
+      retries: 30
+    createNamespace: true
+  upgrade:
+    remediation:
+      retries: 30
+  releaseName: linkerd
+  targetNamespace: linkerd-smi

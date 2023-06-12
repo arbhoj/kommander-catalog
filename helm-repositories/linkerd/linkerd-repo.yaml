@@ -8,3 +8,13 @@ spec:
   interval: 10m
   timeout: 1m
   url: "${helmMirrorURL:=https://helm.linkerd.io/stable}"
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: helm.linkerd-smi.io
+  namespace: ${releaseNamespace}
+spec:
+  interval: 10m
+  timeout: 1m
+  url: "${helmMirrorURL:=https://linkerd.github.io/linkerd-smi"
