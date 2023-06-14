@@ -17,4 +17,4 @@ metadata:
 spec:
   interval: 10m
   timeout: 1m
-  url: "${helmMirrorURL:=https://linkerd.github.io/linkerd-smi"
+  url: "${helmMirrorURL:=https://linkerd.github.io/linkerd-smi}"
