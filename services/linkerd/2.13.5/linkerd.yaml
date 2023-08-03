@@ -38,7 +38,7 @@ spec:
         kind: HelmRepository
         name: helm.linkerd.io
         namespace: ${releaseNamespace}
-      version: 1.12.4
+      version: 1.12.5
   dependsOn:
     - name: linkerd-crds
   interval: 15s
@@ -68,7 +68,7 @@ spec:
         kind: HelmRepository
         name: helm.linkerd.io
         namespace: ${releaseNamespace}
-      version: 30.7.3
+      version: 30.7.5
   dependsOn:
     - name: linkerd-control-plane
   interval: 15s
@@ -95,7 +95,7 @@ spec:
         kind: HelmRepository
         name: helm.linkerd.io
         namespace: ${releaseNamespace}
-      version: 30.8.3
+      version: 30.8.5
   dependsOn:
     - name: linkerd-control-plane
   interval: 15s
