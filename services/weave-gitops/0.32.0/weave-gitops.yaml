@@ -14,7 +14,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: weave-gitops
-      version: 4.0.15 
+      version: 4.0.30 
   interval: 15s  
   install:
     remediation:
@@ -26,7 +26,7 @@ spec:
   releaseName: weave-gitops
   valuesFrom:
     - kind: ConfigMap
-      name: weave-gitops-0.18.0-d2iq-defaults
+      name: weave-gitops-0.32.0-d2iq-defaults
   targetNamespace: ${releaseNamespace}
 
 ---
@@ -59,7 +59,7 @@ data:
   category: Gitops
   description: weave-gitops is a ui tool to visualize and manage flux resources in the clusters
   appTypeDisplayName: APP_TYPE_DISPLAY_NAMES.PLATFORM,
-  version: 0.18.0
+  version: 0.32.0
 kind: ConfigMap
 metadata:
   labels:
