@@ -1,0 +1,110 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  annotations:
+    metadata.weave.works/description: This is the Weave GitOps Dashboard.  It provides
+      a simple way to get insights into your GitOps workloads.
+  name: weave-gitops
+  namespace: ${releaseNamespace}
+spec:
+  chart:
+    spec:
+      chart: weave-gitops
+      sourceRef:
+        kind: HelmRepository
+        name: weave-gitops
+      version: 4.0.36
+  interval: 15s  
+  install:
+    remediation:
+      retries: 30
+    createNamespace: false
+  upgrade:
+    remediation:
+      retries: 30
+  releaseName: weave-gitops
+  valuesFrom:
+    - kind: ConfigMap
+      name: weave-gitops-0.38.0-d2iq-defaults
+  targetNamespace: ${releaseNamespace}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weave-gitops-ingress
+  namespace: ${releaseNamespace}
+  annotations:
+    kubernetes.io/ingress.class: kommander-traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: velero-minio
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: weave-gitops
+            port:
+              number: 9001
+        path: /
+        pathType: ImplementationSpecific
+---
+apiVersion: v1
+data:
+  dashboardLink: /:9000
+  docsLink: https://github.com/weaveworks/weave-gitops
+  name: Weave Gitops Dashboard
+  category: Gitops
+  description: weave-gitops is a ui tool to visualize and manage flux resources in the clusters
+  appTypeDisplayName: APP_TYPE_DISPLAY_NAMES.PLATFORM,
+  version: 0.38.0
+kind: ConfigMap
+metadata:
+  labels:
+    kommander.d2iq.io/application: weave-gitops
+  name: weave-gitops-dashboard-info
+  namespace: ${releaseNamespace}
+
+# The following middleware and ingress are to get around a limitation of custom DKP dashboards
+# that do not allow anything other that an endpoint starting with a "/" for `dashboardLink`.
+# This currently does not work for weave-gitops dashboard as it does not allow changing the
+# path it is served on. It has hardcoded paths in it's javascript that does not work if 
+# endpoint is changed. Even middleware plugins like `rewritebody` don't work. 
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: weave-gitops-redirect
+  namespace: kommander-flux
+spec:
+  redirectRegex:
+    regex: ^https://(.*)/:9000
+    replacement: "https://$${1}:9000"
+    
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: kommander-traefik
+    traefik.ingress.kubernetes.io/router.middlewares: kommander-flux-weave-gitops-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.tls: "true"
+  generation: 2
+  labels:
+    kustomize.toolkit.fluxcd.io/name: weave-gitops-1
+    kustomize.toolkit.fluxcd.io/namespace: ${releaseNamespace}
+  name: weave-gitops-ingress-dashboard-redirect
+  namespace: ${releaseNamespace}
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: weave-gitops
+            port:
+              number: 9001
+        path: /:9000
+        pathType: ImplementationSpecific
