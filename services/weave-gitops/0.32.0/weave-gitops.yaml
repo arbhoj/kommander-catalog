@@ -37,7 +37,7 @@ metadata:
   namespace: ${releaseNamespace}
   annotations:
     kubernetes.io/ingress.class: kommander-traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: velero-minio
+    traefik.ingress.kubernetes.io/router.entrypoints: velero-ceph
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   rules:
@@ -53,7 +53,7 @@ spec:
 ---
 apiVersion: v1
 data:
-  dashboardLink: /:9000
+  dashboardLink: /:8085
   docsLink: https://github.com/weaveworks/weave-gitops
   name: Weave Gitops Dashboard
   category: Gitops
@@ -80,8 +80,8 @@ metadata:
   namespace: kommander-flux
 spec:
   redirectRegex:
-    regex: ^https://(.*)/:9000
-    replacement: "https://$${1}:9000"
+    regex: ^https://(.*)/:8085
+    replacement: "https://$${1}:8085"
     
 ---
 apiVersion: networking.k8s.io/v1
@@ -106,5 +106,5 @@ spec:
             name: weave-gitops
             port:
               number: 9001
-        path: /:9000
+        path: /:8085
         pathType: ImplementationSpecific
